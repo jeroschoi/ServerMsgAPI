@@ -1,0 +1,9 @@
+Rabbit MQ
+ - AMQP(Advanced Message Queue Protocol)를 구현한 OPEN SOURCE QUEUE 솔루션
+
+AMQP는 기본적으로 Exchange, Queue, Binding으로 구성된다.
+  Exchange	- Publisher(Producer)로부터 수신한 메시지를 큐에 분배하는 라우터 역할
+  Queue	    - 메시지를 메모리나 디스크에 저장했다가 Cusomer에게 메시지를 전달하는 역할
+  Binding	  - Exchange와 Queue의 관계를 정의한 것
+
+-- 상세한 내용은 https://cheese10yun.github.io/spring-rabbitmq 블로그에 잘 정리 되어 있음
