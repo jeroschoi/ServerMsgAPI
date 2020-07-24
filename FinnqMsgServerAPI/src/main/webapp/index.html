@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <script src="js/Vue.js"></script>
+        <script src="js/axios.js"></script>
+        <script src="js/Chart.js"></script>
+    </head>
+    <body>
+		<div id="app1">
+        	<button v-on:click="getData"> 호출 </button>
+    	</div>
+    	<table width="1200" border="1">
+		      <tr width="600">
+		        <td width="400">2
+		        	<div width="300">
+		        		<canvas id="myChart1" width="400" height="300"/>
+		        	</div>
+		    	</td>
+				<td width="400">3
+		        	<div width="300">
+		        		<canvas id="myChart2" width="400" height="300"/>
+		        	</div>
+		    	</td>
+				<td width="400">4
+		        	<div width="300">
+		        		<canvas id="myChart3" width="300" height="200"/>
+		        	</div>
+		    	</td>
+		      </tr>
+			  <tr width="600">
+		        <td width="400">2
+		        	<div width="300">
+		        		<canvas id="myChart4" width="300" height="200"/>
+		        	</div>
+		    	</td>
+				<td width="400">2
+		        	<div width="300">
+		        		<canvas id="myChart5" width="300" height="200"/>
+		        	</div>
+		    	</td>
+				<td width="400">2
+		        	<div width="300">
+		        		<canvas id="myChart6" width="300" height="200"/>
+		        	</div>
+		    	</td>
+		      </tr>
+  		</table>
+    </body>
+<script>
+var ctxArray = [];
+
+var ctx1 = document.getElementById('myChart1').getContext('2d');
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+
+
+var config  = {
+	    type: 'bar',
+	    data: {
+	        labels: [],
+	        datasets: [{
+	            label: 'test1',
+	            data: [],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	};
+	
+var myChart1 = new Chart(ctx1 , config);
+var myChart2 = new Chart(ctx2 , config);
+var myChart3 = new Chart(ctx3 , config);
+var myChart4 = new Chart(ctx4 , config);
+
+var app1 = new Vue({
+            el: '#app1',
+            methods:{
+                      getData: function(){
+                        axios.get('http://localhost:8080/FinnqGate/vueTest/test.do?test=1')
+                        .then(function(response){
+                            console.log(response); // 객체 형태로 반환. 파싱작업 불필요
+                        });
+                      }
+                    }
+          });
+</script>
+</html>
