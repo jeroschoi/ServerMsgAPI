@@ -6,9 +6,9 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-/../../../../../../:\Users\suwon\MsgServerAPI\MsgServerAPI\target\*.*
-/../../../../../../:\Users\suwon\MsgServerAPI\MsgServerAPI\out\*.*
-/../../../../../../:\Users\suwon\MsgServerAPI\MsgServerAPI\.settings\*.*
-/../../../../../../:\Users\suwon\MsgServerAPI\MsgServerAPI\.idea\*.*
-/../../../../../../:\Users\suwon\MsgServerAPI\MsgServerAPI\FinnqMsgServerAPI\
+\MsgServerAPI\target\*.*
+\MsgServerAPI\MsgServerAPI\out\*.*
+\MsgServerAPI\MsgServerAPI\.settings\*.*
+\MsgServerAPI\MsgServerAPI\.idea\*.*
+\MsgServerAPI\MsgServerAPI\FinnqMsgServerAPI\
 
