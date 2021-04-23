@@ -8,7 +8,8 @@ public class DbConsumer extends com.msg.gw.consumer.AbConsumer implements IConsu
 	@Override
 	public void sendData(Message dbMessage) {
 		// TODO Auto-generated method stub
-        log(dbMessage , "DbConsumer");
+        log(new String(dbMessage.getBody()) , "DbConsumer");
+        logbackUp(dbMessage);
 		sendToDB(dbMessage);
 	}
 

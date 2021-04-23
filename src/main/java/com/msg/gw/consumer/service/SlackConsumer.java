@@ -23,7 +23,8 @@ public class SlackConsumer extends com.msg.gw.consumer.AbConsumer implements ICo
 	@Override
 	public void sendData(Message SlackMessage) throws Exception{
 		// TODO Auto-generated method stub
-		log(SlackMessage , "SlackConsumer");
+		log(new String(SlackMessage.getBody()) , "SlackConsumer");
+        logbackUp(SlackMessage);
 		SendToSlack(SlackMessage);
 	}
 	

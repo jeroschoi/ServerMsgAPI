@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import com.msg.gw.consumer.Interface.IConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.amqp.core.Message;
 import com.msg.gw.config.AppConfig;
 import com.msg.gw.common.logInsert;
@@ -12,25 +15,19 @@ import com.msg.gw.common.logInsert;
 public abstract class AbConsumer implements IConsumer {
 
 	private logInsert logInsert;
-	private String logFileRootPath ="C:"+systemSeparator+"log"+systemSeparator+"FinnqMsgGateWay";
-	private static final String systemSeparator = File.separator;
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private static final String logLevel = "DEBUG";
 	
 	public AbConsumer() {
+	    // logging ...
 		logInsert = (logInsert) AppConfig.getContext().getBean("logInsert");
-		// Properties 형태 변경처리 필요
 	}
 	
-	public void log(Message Message , String ServiceName) {
-		String ERR_MSG = "";
-		try {
-			ERR_MSG = new String(Message.getBody(),"UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// logInsert.insertdata(test);
+	public void log(String logData , String ServiceName) {
+        MDC.put("serviceId" , ServiceName);
+        if(log.isDebugEnabled()){
+            log.debug(logData);
+        }
 	}
 	
 	public void logbackUp(Message Message) {
