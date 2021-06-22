@@ -1,16 +1,41 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<div id="app">
-    <p>{{ title }}</p>
+
+
+<!-- demo root element -->
+<div id="test">
+    <button v-on:click="getData">test</button>
+    <button v-on:click="testData">test2</button>
+    </p>
+    <ul>
+        <li v-for="(value,name) in items" v-if="value.indexOf('test') < 0">{{ name }} : {{ value }} </li>
+    </ul>
 </div>
+
 <script>
-    new Vue({
-        el: '#app',
+    var test1 = new Vue({
+        el: '#test',
+        // 기본 데이터 선언
         data: {
-            title: 'hello VueJS!'
+          items:null
+        },
+        methods: {
+            getData: function() {
+                 axios.get('http://localhost:8080/putHello.do')
+                        .then(function(response) {
+                            test1.items = response.data;
+                            console.log(response.data);
+                            console.log(test1.items);
+                         });
+               // axios.get('http://localhost:8080/putHello.do').then(response => (this.items = response.data));
+            },
+            testData:function (){
+                alert(test1.items);
+            }
         }
-    })
+    });
 </script>
 </html>
