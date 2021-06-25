@@ -11,7 +11,7 @@
     <button v-on:click="testData">test2</button>
     </p>
     <ul>
-        <li v-for="(value,name) in items" v-if="value.indexOf('test') < 0">{{ name }} : {{ value }} </li>
+        <li  v-if="name.indexOf('test') != -1"  v-for="(value,name) in items" >{{ name }} : {{ value }} </li>
     </ul>
 </div>
 
@@ -24,7 +24,7 @@
         },
         methods: {
             getData: function() {
-                 axios.get('http://localhost:8080/putHello.do')
+                 axios.get('http://localhost:8080/get.do')
                         .then(function(response) {
                             test1.items = response.data;
                             console.log(response.data);
@@ -33,9 +33,15 @@
                // axios.get('http://localhost:8080/putHello.do').then(response => (this.items = response.data));
             },
             testData:function (){
-                alert(test1.items);
+                axios.post('http://localhost:8080/put.do' ,{name:'test' , value:'test232'});
             }
         }
     });
+
+    var test11 = "test10";
+    console.log("check indexOf : " + test11.indexOf('test'));
+    if(test11.indexOf('test') == -1 ){
+        alert("TEST!!!");
+    }
 </script>
 </html>

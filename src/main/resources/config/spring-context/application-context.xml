@@ -12,10 +12,16 @@
 		
 		<context:component-scan base-package="com.msg.*"/>
 		<context:annotation-config />
-		<!-- 
-		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" id="jsonView" order="0">
-		<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView">
-	    <property name="contentType" value="application/json;charset=UTF-8" />
-	    </bean> 
-		</bean> -->
+        <mvc:annotation-driven>
+            <mvc:message-converters>
+                <!-- @ResponseBody로 String 처리할때 한글처리 -->
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </mvc:message-converters>
+        </mvc:annotation-driven>
 </beans>
